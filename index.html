@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0d12">
+  <title>VictoryX — Esports Platform</title>
+  <meta name="description" content="VictoryX — compete, connect and stay updated with the esports community.">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:#f5f7fb;color:#101318;line-height:1.55;
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(1120px,92%);margin:auto}
+
+    header{
+      position:sticky;top:0;z-index:20;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid #e8ebf0;
+    }
+    .nav{
+      min-height:72px;display:flex;align-items:center;
+      justify-content:space-between;gap:20px;
+    }
+    .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:23px}
+    .brand img{width:42px;height:42px;object-fit:contain;border-radius:12px}
+    .brand-text span{color:#1467f5}
+    .nav-btn{
+      background:#1467f5;color:#fff;padding:12px 20px;border-radius:13px;
+      font-weight:800;box-shadow:0 8px 22px rgba(20,103,245,.22)
+    }
+
+    .hero{padding:58px 0 28px}
+    .hero-grid{
+      display:grid;grid-template-columns:1.02fr .98fr;gap:28px;align-items:center;
+    }
+    .eyebrow{
+      color:#1467f5;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+      font-size:13px;margin-bottom:13px;
+    }
+    h1{font-size:clamp(44px,7vw,76px);line-height:.98;letter-spacing:-4px;margin-bottom:22px}
+    h1 span{color:#1467f5}
+    .lead{font-size:19px;color:#687181;max-width:650px;margin-bottom:28px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .primary,.secondary{
+      padding:15px 22px;border-radius:14px;font-weight:850;display:inline-flex;
+      align-items:center;justify-content:center;gap:8px;
+    }
+    .primary{background:#1467f5;color:#fff;box-shadow:0 12px 28px rgba(20,103,245,.23)}
+    .secondary{background:#fff;border:1px solid #dfe4eb}
+    .checks{display:flex;flex-wrap:wrap;gap:18px;margin-top:24px;color:#6b7380;font-weight:750}
+    .checks b{color:#1467f5}
+
+    .visual{
+      min-height:390px;border-radius:30px;background:#0b0d12;position:relative;overflow:hidden;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 25px 60px rgba(13,18,28,.16);
+    }
+    .visual:before,.visual:after{
+      content:"";position:absolute;border:1px solid rgba(255,255,255,.1);
+      border-radius:50%;width:430px;height:430px;
+    }
+    .visual:before{right:-190px;bottom:-260px}
+    .visual:after{left:-250px;top:-300px}
+    .visual-inner{text-align:center;color:#fff;position:relative;z-index:1}
+    .vx-box{
+      width:145px;height:145px;border-radius:34px;background:#1467f5;
+      display:grid;place-items:center;margin:0 auto 25px;
+      box-shadow:0 18px 45px rgba(20,103,245,.32)
+    }
+    .vx-box img{width:82px;height:82px;object-fit:contain}
+    .vx-fallback{font-size:52px;font-weight:950}
+    .visual-small{font-size:14px;letter-spacing:3px;color:#8e96a4;font-weight:800}
+    .visual-title{font-size:25px;font-weight:900;letter-spacing:2px;margin-top:5px}
+
+    .stats{padding:15px 0 58px}
+    .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .stat{
+      background:#fff;border:1px solid #e7eaf0;border-radius:22px;padding:25px;
+      text-align:center;box-shadow:0 10px 30px rgba(20,30,50,.04)
+    }
+    .stat-num{font-size:36px;font-weight:950;line-height:1}
+    .stat-label{color:#747c89;margin-top:8px;font-weight:750;font-size:15px}
+
+    section{padding:58px 0}
+    .section-head{text-align:center;max-width:700px;margin:0 auto 30px}
+    .section-head .eyebrow{margin-bottom:8px}
+    h2{font-size:clamp(32px,5vw,48px);letter-spacing:-2px;line-height:1.05}
+    .section-sub{color:#707887;font-size:17px;margin-top:12px}
+
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{
+      background:#fff;border:1px solid #e7eaf0;border-radius:24px;padding:28px;
+      min-height:210px;box-shadow:0 10px 30px rgba(20,30,50,.04)
+    }
+    .icon{
+      width:48px;height:48px;border-radius:15px;background:#edf4ff;color:#1467f5;
+      display:grid;place-items:center;font-size:21px;font-weight:900;margin-bottom:35px
+    }
+    .card h3{font-size:22px;margin-bottom:8px}
+    .card p{color:#747c89}
+
+    .community{background:#0b0d12;color:#fff;border-radius:32px;padding:55px 6%;overflow:hidden}
+    .community .section-head{text-align:left;margin:0 0 28px;max-width:760px}
+    .community .section-sub{color:#a7afbd}
+    .social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .social{
+      background:#151922;border:1px solid #242a36;border-radius:20px;padding:20px;
+      display:flex;align-items:center;gap:15px;transition:.2s
+    }
+    .social:hover{transform:translateY(-3px);border-color:#3d4656}
+    .social img{width:48px;height:48px;object-fit:contain;border-radius:14px;background:#fff;padding:7px}
+    .social-name{font-weight:850;font-size:17px}
+    .social-handle{font-size:13px;color:#9ba4b3;margin-top:2px}
+    .arrow{margin-left:auto;color:#4e91ff;font-size:20px}
+
+    .download{
+      margin-top:24px;background:linear-gradient(135deg,#0b0d12,#171b24);
+      color:#fff;border-radius:30px;padding:45px;text-align:center;
+    }
+    .download p{color:#a8b0be;margin:10px auto 24px;max-width:580px}
+    .download .primary{display:inline-flex}
+
+    footer{padding:35px 0;color:#7a8290;text-align:center;font-size:14px}
+    footer strong{color:#20252d}
+
+    @media(max-width:800px){
+      .hero-grid{grid-template-columns:1fr}
+      .visual{min-height:330px}
+      .features,.social-grid{grid-template-columns:1fr}
+      h1{letter-spacing:-2.5px}
+      .community{padding:38px 22px}
+    }
+    @media(max-width:480px){
+      .nav{min-height:64px}
+      .brand{font-size:20px}
+      .brand img{width:36px;height:36px}
+      .nav-btn{padding:10px 14px}
+      .hero{padding-top:38px}
+      .stats-grid{gap:10px}
+      .stat{padding:20px 10px}
+      .stat-num{font-size:30px}
+      .visual{border-radius:24px}
+      .vx-box{width:125px;height:125px}
+      .download{padding:35px 20px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#">
+        <img src="assets/logo.png" alt="VictoryX" onerror="this.style.display='none'">
+        <span class="brand-text">Victory<span>X</span></span>
+      </a>
+      <a class="nav-btn" href="#download">Get App</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">VictoryX Esports</div>
+          <h1>Compete.<br><span>Connect. Win.</span></h1>
+          <p class="lead">
+            Welcome to VictoryX — a modern esports platform built for players,
+            tournaments and a growing gaming community.
+          </p>
+
+          <div class="actions">
+            <a class="primary" href="#download">Download App ↓</a>
+            <a class="secondary" href="#community">Join Community</a>
+          </div>
+
+          <div class="checks">
+            <span>✓ <b>Simple</b> experience</span>
+            <span>✓ <b>Community</b> focused</span>
+            <span>✓ <b>Mobile</b> friendly</span>
+          </div>
+        </div>
+
+        <div class="visual">
+          <div class="visual-inner">
+            <div class="vx-box">
+              <img src="assets/logo.png" alt="VictoryX logo"
+                   onerror="this.style.display='none';document.getElementById('vxFallback').style.display='block'">
+              <div id="vxFallback" class="vx-fallback" style="display:none">VX</div>
+            </div>
+            <div class="visual-small">YOUR ESPORTS</div>
+            <div class="visual-title">DESTINATION</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Public counters: numbers are ready to be replaced by a real backend later. -->
+    <section class="stats">
+      <div class="wrap stats-grid">
+        <div class="stat">
+          <div class="stat-num" id="visitorCount">0</div>
+          <div class="stat-label">Visitors</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="downloadCount">0</div>
+          <div class="stat-label">Downloads</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Why VictoryX</div>
+          <h2>Made to keep things simple.</h2>
+          <p class="section-sub">Everything important, presented in a clean and focused experience.</p>
+        </div>
+
+        <div class="features">
+          <div class="card">
+            <div class="icon">✓</div>
+            <h3>Best Customer Support</h3>
+            <p>Clear and straightforward support for VictoryX users and the community.</p>
+          </div>
+          <div class="card">
+            <div class="icon">↗</div>
+            <h3>Fast Access</h3>
+            <p>A smooth experience designed around quick access and simple navigation.</p>
+          </div>
+          <div class="card">
+            <div class="icon">★</div>
+            <h3>Simple Experience</h3>
+            <p>Clean screens and focused navigation without unnecessary clutter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community">
+      <div class="wrap">
+        <div class="community">
+          <div class="section-head">
+            <div class="eyebrow">Our Community</div>
+            <h2>Stay connected with VictoryX.</h2>
+            <p class="section-sub">
+              Follow the official VictoryX channels for announcements, updates and community news.
+            </p>
+          </div>
+
+          <div class="social-grid">
+            <a class="social" target="_blank" rel="noopener"
+               href="https://www.instagram.com/victoryx.esports/">
+              <img src="assets/instagram.png" alt="Instagram">
+              <div>
+                <div class="social-name">Instagram</div>
+                <div class="social-handle">@victoryx.esports</div>
+              </div>
+              <div class="arrow">↗</div>
+            </a>
+
+            <a class="social" target="_blank" rel="noopener"
+               href="https://youtube.com/@victoryxesportss">
+              <img src="assets/youtube.png" alt="YouTube">
+              <div>
+                <div class="social-name">YouTube</div>
+                <div class="social-handle">@victoryxesportss</div>
+              </div>
+              <div class="arrow">↗</div>
+            </a>
+
+            <a class="social" target="_blank" rel="noopener"
+               href="https://whatsapp.com/channel/0029VbD3etVAYlUJ0sbD5P0F">
+              <img src="assets/whatsapp.png" alt="WhatsApp">
+              <div>
+                <div class="social-name">WhatsApp Channel</div>
+                <div class="social-handle">Official VictoryX community</div>
+              </div>
+              <div class="arrow">↗</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="download" id="download">
+          <div class="eyebrow">Get The App</div>
+          <h2>VictoryX APK</h2>
+          <p>Download the VictoryX app and stay connected with tournaments, updates and the community.</p>
+
+          <!-- Replace app-release.apk with the real APK filename when you upload it. -->
+          <a class="primary" href="app-release.apk" download onclick="countDownload()">Download APK ↓</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <strong>VictoryX</strong> — Compete. Connect. Win.<br>
+      © <span id="year"></span> VictoryX. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Temporary local counter for testing.
+    // For a true shared/public counter, connect these values to the VictoryX backend later.
+    const visitorKey = "victoryx_visited";
+    let visitors = Number(localStorage.getItem("victoryx_visitors") || 0);
+
+    if (!localStorage.getItem(visitorKey)) {
+      visitors++;
+      localStorage.setItem("victoryx_visitors", visitors);
+      localStorage.setItem(visitorKey, "1");
+    }
+
+    const downloads = Number(localStorage.getItem("victoryx_downloads") || 0);
+    document.getElementById("visitorCount").textContent = visitors;
+    document.getElementById("downloadCount").textContent = downloads;
+
+    function countDownload(){
+      const next = Number(localStorage.getItem("victoryx_downloads") || 0) + 1;
+      localStorage.setItem("victoryx_downloads", next);
+      document.getElementById("downloadCount").textContent = next;
+    }
+  </script>
+</body>
+</html>
